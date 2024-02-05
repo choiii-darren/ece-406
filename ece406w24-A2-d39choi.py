@@ -46,17 +46,13 @@ def primality(N):
     random.randint(a,b).
     """
     # TODO: Implement a True/False test for primality of an input number N.
-    testing = []
-    while len(testing) != 10:
-        num = random.randint(2, N)
-        if num % N == 0:
-            continue
-        else:
-            testing.append(num)
-    for num in testing:
-        if num**(N-1)%N == 1:
-            continue
-        else:
+    if N < 2:
+        return False
+    elif N == 2:
+        return True
+    for _ in range(10):
+        num = random.randint(2,N-1)
+        if modexp(num,N-1,N) != 1: #num**(N-1)%N
             return False
     return True
 
@@ -66,6 +62,8 @@ def prime_generator(N):
     This function generates a prime number <= N
     """
     # TODO: Implement a prime number generator.
+    if N < 2:
+        return False
     while True:
         number = random.randint(2,N)
         # print('trying ', number)
@@ -96,14 +94,14 @@ def main():
     e = 5
     message = 2148321
     # message = 30
-    print("p:", p, ' q: ', 'q')
+    print("p:", p, ' q: ', q)
     (x,y,d) = extended_euclid(((q-1)*(p-1)),e)
     # print(x,y,d)
     mult_inverse = y % ((p-1)*(q-1)) # multiplicative inverse
-    print(mult_inverse)
+    # print(mult_inverse)
     # print((e*mult_inverse)-1, ((q-1)*(p-1)))
-    if (e * mult_inverse - 1 ) % (p-1)*(q-1) == 0:
-        print('divisible')
+    # if (e * mult_inverse - 1 ) % (p-1)*(q-1) == 0:
+    #     print('divisible')
     # print(message,e,N)
     encoded = modexp(message,e,N)
     print('encoded: ',encoded)

@@ -1,0 +1,13 @@
+def search(array1,array2):
+    sorted1 = mergesort(array1)
+    sorted2 = mergesort(array2)
+    sorted3 = merge(sorted1, sorted2)
+    for idx in range(len(sorted3)-1):
+        if sorted3[i+1] == sorted3[i]:
+            return True
+    return False
+
+This algorithm uses the mergesort and merge algorithms that we previously studied, then does a simple element verification loop on the merged and sorted array to see if any elements are duplicates.
+
+T(n) is 2*(n log n) for each merge sort + n for the merge + n-1 for the element verification
+Thus, the worst case time complexity is O(n log n)

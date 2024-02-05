@@ -1,0 +1,24 @@
+def idx_is_num(array)
+	if len(array) = 1:
+		return True if array[0] = 0
+    else:
+        center = len(array)//2 (floor division)
+        if array[center] == center:
+            return True
+        return split(0,center,array) or split(center + 1, len(array), array)
+
+def split(lower, upper ,array):
+    center = (upper - lower) // 2
+    if center = array[center]
+        return True
+    elif upper - lower <= 1:
+        return False
+    else:
+        return split(lower,center,array) or split(center+1, upper, array)
+
+The idea behind this algorithm is that when you pass an array, it checks the middle index and value,
+then divides the array into the left and right indexs of the array. To keep the values in order,
+I pass the lower and upper indexs rather than sectioning the array. It whittles down sections until they are either length 1 or 0. At length 1, we check if its value and return true if yes. Length 0 arrays just return 0 in all instances.
+
+This array is T(N) = 2*T(N/2) + O(N^0) where a = 2, b = 2, and d = 0. Applying the Master Theorem,
+this algorithm is in O(n^1)
