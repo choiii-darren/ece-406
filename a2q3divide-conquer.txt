@@ -18,7 +18,6 @@ def split(lower, upper ,array):
 
 The idea behind this algorithm is that when you pass an array, it checks the middle index and value,
 then divides the array into the left and right indexs of the array. To keep the values in order,
-I pass the lower and upper indexs rather than sectioning the array. It whittles down sections until they are either length 1 or 0. At length 1, we check if its value and return true if yes. Length 0 arrays just return 0 in all instances.
+I pass the lower and upper indexs rather than sectioning the array. It whittles down sections until they are either length 1 or 0. At length 1, we check if its value and return true if yes. Length 0 arrays just return False in all instances.
 
-This array is T(N) = 2*T(N/2) + O(N^0) where a = 2, b = 2, and d = 0. Applying the Master Theorem,
-this algorithm is in O(n^1)
+This algorithm is T(n) = O(log n) because this algorith simply splits the array in 2, and there isn't any recombining. Thus, There are log n levels, and worst case time complexity will be O(log n).
