@@ -67,11 +67,14 @@ def main():
     # reversed_coeffs = coefficients[::-1]
     
     # Perform FFT
-    fft_result = np.fft(reversed_coeffs)
+    fft_result = np.fft(reversed_coeffs,32)
     
     # Evaluate at the nth roots of unity
-    n = len(reversed_coeffs)
-    roots_of_unity = np.exp(2j * np.pi * np.arange(n) / n)
+    # n = len(reversed_coeffs)
+    # roots_of_unity = np.exp(2j * np.pi * np.arange(n) / n)
+
+    for i, c in enumerate(Ccoeff):
+        Ccoeff[i] = int(round(c.real))
     evaluated_polynomial = np.real(np.polyval(fft_result, roots_of_unity))
     
     # Extract binary digits
