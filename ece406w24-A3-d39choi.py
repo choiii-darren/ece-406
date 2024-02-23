@@ -8,8 +8,8 @@ import numpy.fft as np
 ################################################################################
 # student info
 #
-# WatIAM username: TODO
-# Student number: TODO
+# WatIAM username: d39choi  
+# Student number: 20876806
 ################################################################################
 
 
@@ -45,6 +45,7 @@ def main():
     # we'll get rid of the imaginary parts, which are just numerical errors
     for i, c in enumerate(Ccoeff):
         Ccoeff[i] = int(round(c.real))
+    # print(Ccoeff)
     # NOTE: Because we are taking the FFT on 12-bit numbers using the 32-th roots
     #       of unity, the polynomial coefficients (Ccoeff) can be numbers 
     #       other than 0 and 1. Don't be alarmed by this: this polynomial will
@@ -62,31 +63,18 @@ def main():
     
     # (vi) write code to calculate the binary digits of c directly from the coefficients of C, Ccoeff.
     # TODO: use Coeff to produce an array of {0, 1} values that represent the binary values of c
-    reversed_coeffs = Ccoeff[::-1]
-    print(reversed_coeffs)
-    # reversed_coeffs = coefficients[::-1]
+    #since we use C(2) the coefficienst must be already in binary, but in reverse:
+    print("Binary Conversion of product:",bin(int(round(prod.real))))
+    bitArray = []
+    carry = 0
+    for i in range(len(Ccoeff)):
+        addBit = carry
+        addBit += int(round(Ccoeff[i].real))
+        carry = addBit // 2
+        addBit = addBit % 2
+        bitArray.append(str(addBit))
+    print("Coefficients inversed:", ''.join(bitArray[::-1]))
     
-    # Perform FFT
-    fft_result = np.fft(reversed_coeffs,32)
-    
-    # Evaluate at the nth roots of unity
-    # n = len(reversed_coeffs)
-    # roots_of_unity = np.exp(2j * np.pi * np.arange(n) / n)
-
-    for i, c in enumerate(Ccoeff):
-        Ccoeff[i] = int(round(c.real))
-    evaluated_polynomial = np.real(np.polyval(fft_result, roots_of_unity))
-    
-    # Extract binary digits
-    binary_digits = [int(round(x)) for x in evaluated_polynomial]
-    
-    # Combine binary digits
-    binary_representation = "".join(map(str, binary_digits))
-    print(binary_representation)
-    # reversed_vals = np.fft(reversed_coeffs, 32)
-    # print(reversed_vals)
-    #anti fft??
-    # print(f"{c_binary:b}")
 
 
 

@@ -1,0 +1,19 @@
+def shortestPath(v):
+    queue = []
+    currentVertex = v
+
+    while currentVertex != None:
+        inject(queue, currentVertx)
+        currentVertex = prev(v)
+    
+    for vertex in queue:
+        print(vertex)
+
+i. To keep track of vertices in order, we use a queue. To know when to stop, we use the initialize prev(v) = null to stop when the currentVertex == null. While it's not null, we insert at the 0th index of the queue, saying that prev(v).next == verification. Then, at the end, we print the queue in order, which is the path from s to v.
+
+ii. 
+Inject: O(1) time
+Change: O(1) time as value already exists
+
+These two commands are in a while loop, which is of size O(|V|), for each vertex in V (set of vertices)
+Thus, the run time is characterized as O(|V|) for this algorithm.
