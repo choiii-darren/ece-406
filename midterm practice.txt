@@ -1,0 +1,20 @@
+w22 midterm practice q3 part d
+
+def connected_comps(G,E):
+    for v e V:
+        dist(v) = -1
+    pathQ = []
+    count = 0
+    for v in G.keyS():
+        if dist(v) != -1:
+            continue
+        inject(pathQ, v):
+        while pathQ:
+            node = eject(pathQ)
+            for vertex in node:
+                if dist(vertex) == -1:
+                    inject(pathQ, vertex)
+            dist(node) = 1
+        count += 1
+    return count
+    

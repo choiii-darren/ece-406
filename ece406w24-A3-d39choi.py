@@ -8,8 +8,8 @@ import numpy.fft as np
 ################################################################################
 # student info
 #
-# WatIAM username: TODO
-# Student number: TODO
+# WatIAM username: d39choi
+# Student number: 20876806
 ################################################################################
 
 
@@ -56,37 +56,28 @@ def main():
     prod = 0
     # TODO: write some code to produce the proper value of prod as an integer
     for i in range(len(Ccoeff)):
-        prod += Ccoeff[i]*2**i
+        prod += Ccoeff[i]*(2**i)
     print('Using the FFT the product of a and b is', int(round(prod.real)))
 
     
     # (vi) write code to calculate the binary digits of c directly from the coefficients of C, Ccoeff.
     # TODO: use Coeff to produce an array of {0, 1} values that represent the binary values of c
-    reversed_coeffs = Ccoeff[::-1]
-    print(reversed_coeffs)
-    # reversed_coeffs = coefficients[::-1]
-    
-    # Perform FFT
-    fft_result = np.fft(reversed_coeffs,32)
-    
-    # Evaluate at the nth roots of unity
-    # n = len(reversed_coeffs)
-    # roots_of_unity = np.exp(2j * np.pi * np.arange(n) / n)
+    bitArray = []
+    carry = 0
+    lastSigBit = 0
+    for i in range(len(Ccoeff)):
+        addBit = carry + int(round(Ccoeff[i].real))
+        carry = addBit // 2
+        addBit = addBit % 2
+        bitArray.append(str(addBit))
+        if addBit == 1:
+            lastSigBit = i
+    if carry != 0:
+        bitArray.append(str(addBit))
+        lastSigBit += 1
+    print(''.join(bitArray[:lastSigBit+1]))
 
-    for i, c in enumerate(Ccoeff):
-        Ccoeff[i] = int(round(c.real))
-    evaluated_polynomial = np.real(np.polyval(fft_result, roots_of_unity))
-    
-    # Extract binary digits
-    binary_digits = [int(round(x)) for x in evaluated_polynomial]
-    
-    # Combine binary digits
-    binary_representation = "".join(map(str, binary_digits))
-    print(binary_representation)
-    # reversed_vals = np.fft(reversed_coeffs, 32)
-    # print(reversed_vals)
-    #anti fft??
-    # print(f"{c_binary:b}")
+
 
 
 
