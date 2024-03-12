@@ -7,7 +7,6 @@ def search(array1,array2):
             return True
     return False
 
-This algorithm uses the mergesort and merge algorithms that we previously studied, then does a simple element verification loop on the merged and sorted array to see if any elements are duplicates.
+This algorithm uses the mergesort and merge algorithms that we previously studied, then does a element verification loop on the merged and sorted array to see if any elements are duplicates, which means the duplicates have to be next to one another as the array is sorted.
 
-T(n) is 2*(n log n) for each merge sort + n for the merge + n-1 for the element verification
-Thus, the worst case time complexity is O(n log n)
+T(n) = 2*(n log n) + n + n-1 = 2*(n log n) + 2n-1 for each merge sort, for the merge and for the element verification. Thus, the worst case time complexity is O(n log n) as the n log n algorithm increases faster than the other parts

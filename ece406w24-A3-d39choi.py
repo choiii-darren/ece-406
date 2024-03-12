@@ -8,7 +8,11 @@ import numpy.fft as np
 ################################################################################
 # student info
 #
+<<<<<<< HEAD:ece406w24-A3-d39choi.py
 # WatIAM username: d39choi
+=======
+# WatIAM username: d39choi  
+>>>>>>> 710208d11f1f71217803cad6181a8777e076ddaa:ece406w24-A3-d39choi.py
 # Student number: 20876806
 ################################################################################
 
@@ -45,6 +49,7 @@ def main():
     # we'll get rid of the imaginary parts, which are just numerical errors
     for i, c in enumerate(Ccoeff):
         Ccoeff[i] = int(round(c.real))
+    # print(Ccoeff)
     # NOTE: Because we are taking the FFT on 12-bit numbers using the 32-th roots
     #       of unity, the polynomial coefficients (Ccoeff) can be numbers 
     #       other than 0 and 1. Don't be alarmed by this: this polynomial will

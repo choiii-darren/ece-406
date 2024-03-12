@@ -1,5 +1,5 @@
-input1 = [2,4,4,4,5,5,6,9,10] #answers are i = 5 odd length center floor divided is 4?
-input2 = [1,3,5,6,7,7,7,7,7,10] #answers are i = 7 even length center floor division is 5
+input1 = [2,3,4,5,6,7,8,9,10] #answers are none i = 5 odd length center floor divided is 4?
+input2 = [-10,-8,0,3,4] #answers are i = 7 even length center floor division is 5
 input3 = [0,3,4,5,6,7,8,9] #answers are i = 0
 input4 = [1,2,3,4,5,6,7,8] #no right answer
 
@@ -21,10 +21,10 @@ def split(lower, upper, array):
         return True
     elif upper - lower <= 1:
         return False
+    elif array[center] > center:
+        return split(lower, center,array)
     else:
-        ret1 = split(lower, center, array)
-        ret2 = split(center+1, upper, array) #prob how the array length is differenet or the base case
-        return ret1 or ret2 #being floor divided so center cannot equal len(array)
+        return split(center + 1, upper, array)
 
 def idx_is_num(array):
     if len(array) == 1:

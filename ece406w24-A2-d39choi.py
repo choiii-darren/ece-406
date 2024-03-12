@@ -7,6 +7,7 @@ from assignment 1
 import random
 import math
 
+#Submission for Darren Choi (d39choi/20876806)
 
 # TODO: Add implementations of modexp and extended_euclid (you can resuse your code from A1).
 def modexp(x, y, N):
@@ -86,27 +87,24 @@ def main():
     while True:
         p = prime_generator(10000000)
         q = prime_generator(10000000)
+        if p < 1000000 or q < 1000000:
+            continue
         (x,y,d) = extended_euclid(e, ((q-1)*(p-1)))
         if d == 1:
             break
     # print(p,q)
     N = p * q
-    e = 5
     message = 2148321
-    # message = 30
     print("p:", p, ' q: ', q)
     (x,y,d) = extended_euclid(((q-1)*(p-1)),e)
-    # print(x,y,d)
     mult_inverse = y % ((p-1)*(q-1)) # multiplicative inverse
-    # print(mult_inverse)
-    # print((e*mult_inverse)-1, ((q-1)*(p-1)))
-    # if (e * mult_inverse - 1 ) % (p-1)*(q-1) == 0:
-    #     print('divisible')
-    # print(message,e,N)
+    print("multiplicative inverse (d): ", mult_inverse)
     encoded = modexp(message,e,N)
-    print('encoded: ',encoded)
+    print('x: ',message,' encoded: ',encoded)
     decoded_message = modexp(encoded, mult_inverse , N)
     print('decoded: ', decoded_message)
+
+
     # TODO: Complete this main() function.
     #       You should use print statements to show that your code completes the 
     #       instructions from parts iii--vi.

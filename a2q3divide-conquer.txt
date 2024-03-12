@@ -8,16 +8,19 @@ def idx_is_num(array)
         return split(0,center,array) or split(center + 1, len(array), array)
 
 def split(lower, upper ,array):
-    center = (upper - lower) // 2
+    center = (upper + lower) // 2
     if center = array[center]
         return True
     elif upper - lower <= 1:
         return False
+    elif array[center] < center:
+        return split(center + 1, upper ,array)
     else:
-        return split(lower,center,array) or split(center+1, upper, array)
+        return split(lower, center, array)
 
 The idea behind this algorithm is that when you pass an array, it checks the middle index and value,
-then divides the array into the left and right indexs of the array. To keep the values in order,
-I pass the lower and upper indexs rather than sectioning the array. It whittles down sections until they are either length 1 or 0. At length 1, we check if its value and return true if yes. Length 0 arrays just return False in all instances.
+then if the value and index match, returns true. Otherwise, if the value of array[center] is less than the value of center, then we know that we have to check the upper index, because anything lower than that cannot be possible as the input array is sorted and distinct. It's vice versa if the value of array[center] is greater than the value of center. 
+
+This leads to a = 1, b = 2, and d = 0, so by master theorem we have case 2. And thus T(n)= O(n^0 * log n) = O(log n)
 
 This algorithm is T(n) = 2 T(N/2) because this algorith simply splits the array in 2, and there isn't any recombining. Thus, There are log n levels, and worst case time complexity will be O(log n) after you solve the recurrence relation.
